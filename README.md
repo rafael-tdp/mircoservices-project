@@ -8,3 +8,9 @@ Le projet consiste à développer un site web destiné à deux types d'utilisate
 # Le découpage en microservices du projet : 
 
 https://excalidraw.com/#room=94a083eb85eccc12288d,s_JNb7sq83JVLAnsgQbElQ
+
+
+# Technos :
+Front-end : Angular
+Back-end : TypeScript + NestJS
+BDD : MongoDB
