@@ -9,6 +9,7 @@ Le projet consiste à développer un site web destiné à deux types d'utilisate
 
 https://excalidraw.com/#room=94a083eb85eccc12288d,s_JNb7sq83JVLAnsgQbElQ
 
+![microService](https://github.com/asma1mokeddes/Micro-services/assets/123383461/344653cb-baa9-4f1d-a8cc-9e1b59d9ce0f)
 
 # Technos :
 Front-end : Angular
