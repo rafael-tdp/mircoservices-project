@@ -15,3 +15,8 @@ https://excalidraw.com/#room=94a083eb85eccc12288d,s_JNb7sq83JVLAnsgQbElQ
 Front-end : Angular
 Back-end : TypeScript + NestJS
 BDD : MongoDB
+
+# Event-Driven :
+produceur :  service notes
+consommateur : service notifcation et autres
+message : "Envoi de notif pour prévénir qu'une note a été publiée"
