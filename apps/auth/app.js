@@ -24,8 +24,8 @@ app.use((req, res, next) => {
 app.use("/auth", auth);
 
 try {
-    await mongoose.connect(process.env.DB_URI)
-    console.log('Connected to database')
+    await mongoose.connect(process.env.DB_URI);
+    console.log("Connected to database");
 } catch (e) {
     console.error(e);
 }

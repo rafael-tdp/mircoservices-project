@@ -1,19 +1,40 @@
-import User from '../models/user.js'
+import User from "../models/user.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 export const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser)
+            throw new Error(`L'adresse email ${email} est déjà utilisée`);
+
         const user = new User({
             username,
             email,
-            password,
+            password: hashedPassword,
         });
+
+        const payload = {
+            userId: user._id,
+            username: user.username,
+        };
+
+        const options = {
+            expiresIn: "1h",
+        };
+
+        const token = jwt.sign(payload, process.env.SECRET_KEY, options);
 
         await user.save();
 
         res.json({
             message: "Utilisateur créé avec succès",
+            token: token,
         });
     } catch (error) {
         res.status(500).json({
