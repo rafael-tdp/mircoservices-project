@@ -43,10 +43,10 @@ export const register = async (req, res) => {
     }
 };
 
-export const loginUser = async (req, res) => {
+export const login = async (req, res) => {
     // Logique de connexion de l'utilisateur
 };
 
-export const logoutUser = async (req, res) => {
+export const logout = async (req, res) => {
     // Logique de déconnexion de l'utilisateur
 };
