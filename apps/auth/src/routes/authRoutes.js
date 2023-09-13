@@ -25,7 +25,7 @@ export const register = async (req, res) => {
         });
 
         const payload = {
-            userId: user._id
+            userId: user._id,
         };
 
         const options = {
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign(payload, process.env.SECRET_KEY, options);
 
-        res.json({ token });
+        res.json({ user, token });
     } catch (error) {
         res.status(500).json({
             error: `Une erreur est survenue lors de la connexion : ${error}`,
