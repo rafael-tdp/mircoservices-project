@@ -73,7 +73,14 @@ export const login = async (req, res) => {
 
         const token = jwt.sign(payload, process.env.SECRET_KEY, options);
 
-        res.json({ user, token });
+        const userWithToken = {
+            ...user.toObject(),
+            token,
+        };
+
+        delete userWithToken.password;
+
+        res.json(userWithToken);
     } catch (error) {
         res.status(500).json({
             error: `Une erreur est survenue lors de la connexion : ${error}`,
