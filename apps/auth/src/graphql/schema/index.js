@@ -11,13 +11,24 @@ const schema = buildSchema(`
     role: String!
   }
 
+  type UserResponse {
+    user: User
+    message: String
+    token: String
+  }
 
-  input UserInput {
-    firstname: String!
-    lastname: String!
-    email: String!
-    password: String!
-    role: String!
+
+  input Register {
+    firstname: String
+    lastname: String
+    email: String
+    password: String
+    role: String
+  }
+
+  input Login {
+    email: String
+    password: String
   }
 
   type Query {
@@ -25,7 +36,8 @@ const schema = buildSchema(`
   }
 
   type Mutation {
-    createUser(user:UserInput): User
+    register(user:Register): UserResponse
+    login(user:Login): UserResponse
   }
 
   schema {
