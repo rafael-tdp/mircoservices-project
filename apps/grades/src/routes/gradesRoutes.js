@@ -29,6 +29,9 @@ export const getUserGrades = async (req, res) => {
                     grades: {
                         $push: "$grade",
                     },
+                    coefficient: {
+                        $first: "$subjectInfo.coefficient", // Extrayez le coefficient du premier document du groupe
+                      },
                 },
             },
             {
@@ -36,6 +39,7 @@ export const getUserGrades = async (req, res) => {
                     _id: 0,
                     subject: "$_id",
                     grades: 1,
+                    coefficient: 1,
                 },
             },
         ];

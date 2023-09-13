@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import gradesRouter from "./src/router/gradesRouter.js";
+import subjectsRouter from "./src/router/subjectsRouter.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -21,7 +22,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/", gradesRouter);
+app.use("/grades", gradesRouter);
+app.use("/subjects", subjectsRouter);
 
 try {
     await mongoose.connect(process.env.DB_URI);
