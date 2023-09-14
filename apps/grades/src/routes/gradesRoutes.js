@@ -31,7 +31,7 @@ export const getUserGrades = async (req, res) => {
                     },
                     coefficient: {
                         $first: "$subjectInfo.coefficient", // Extrayez le coefficient du premier document du groupe
-                      },
+                    },
                 },
             },
             {
@@ -74,6 +74,52 @@ export const addUserGrade = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             error: `Une erreur est survenue lors de l'ajout d'une note à l'utilisateur : ${error}`,
+        });
+    }
+};
+
+export const deleteUserGrade = async (req, res) => {
+    try {
+        const gradeId = req.params.gradeId;
+
+        await Grade.findOneAndDelete({
+            _id: gradeId,
+        });
+
+        res.json({
+            message: "Note supprimée avec succès",
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: `Une erreur est survenue lors de la suppression d'une note de l'utilisateur : ${error}`,
+        });
+    }
+};
+
+export const updateUserGrade = async (req, res) => {
+    try {
+        const gradeId = req.params.gradeId;
+        const { grade } = req.body;
+
+        const updateQuery = {};
+        if (grade) {
+            updateQuery.grade = grade;
+        }
+
+        await Grade.findOneAndUpdate(
+            {
+                _id: gradeId,
+                user: userId,
+            },
+            updateQuery
+        );
+
+        res.json({
+            message: "Note modifiée avec succès",
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: `Une erreur est survenue lors de la modification d'une note de l'utilisateur : ${error}`,
         });
     }
 };
