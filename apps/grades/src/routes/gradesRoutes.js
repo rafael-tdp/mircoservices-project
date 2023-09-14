@@ -4,47 +4,14 @@ import { Types } from "mongoose";
 export const getUserGrades = async (req, res) => {
     try {
         const userId = req.params.userId;
-        // const grades = await Grade.find({ user: new Types.ObjectId(userId) });
 
-        const pipeline = [
-            {
-                $match: {
-                    user: new Types.ObjectId(userId),
-                },
-            },
-            {
-                $lookup: {
-                    from: "subjects",
-                    localField: "subject",
-                    foreignField: "_id",
-                    as: "subjectInfo",
-                },
-            },
-            {
-                $unwind: "$subjectInfo",
-            },
-            {
-                $group: {
-                    _id: "$subjectInfo.name",
-                    grades: {
-                        $push: "$grade",
-                    },
-                    coefficient: {
-                        $first: "$subjectInfo.coefficient", // Extrayez le coefficient du premier document du groupe
-                    },
-                },
-            },
-            {
-                $project: {
-                    _id: 0,
-                    subject: "$_id",
-                    grades: 1,
-                    coefficient: 1,
-                },
-            },
-        ];
-
-        const gradesBySubject = await Grade.aggregate(pipeline);
+        const gradesBySubject = await Grade.find({ user: userId })
+            .populate({
+                path: "subject",
+                model: "Subject",
+            })
+            .select("subject grade coefficient")
+            .lean();
 
         res.json(gradesBySubject);
     } catch (error) {

@@ -13,11 +13,12 @@ export const getSubjects = async (req, res) => {
 
 export const addSubject = async (req, res) => {
     try {
-        const { name, coefficient } = req.body;
+        const { name, coefficient, teacher } = req.body;
 
         const newSubject = new Subject({
             name,
             coefficient,
+            teacher
         });
 
         await newSubject.save();
@@ -54,7 +55,7 @@ export const updateSubject = async (req, res) => {
     try {
         const subjectId = req.params.subjectId;
         const { name, coefficient, teacher } = req.body;
-        
+
         const updateQuery = {};
         if (name) {
             updateQuery.name = name;

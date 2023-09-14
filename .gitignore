@@ -3,5 +3,7 @@ apps/api-gateway/node_modules/
 apps/grades/node_modules/
 apps/emails/node_modules
 # apps/auth/.env
+front/node_modules/
+front/.angular/
 .vscode
 .gitignore
