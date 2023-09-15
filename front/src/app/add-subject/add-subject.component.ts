@@ -12,4 +12,8 @@ export class AddSubjectComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addSubject() {
+    // ajout d'une nouvelle matière
+  }
+
 }

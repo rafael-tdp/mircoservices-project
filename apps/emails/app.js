@@ -51,8 +51,8 @@ app.post("/send-email", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("App is running on port 3000");
+app.listen(3004, () => {
+  console.log("App is running on port 3004");
 });
 
 export default app;

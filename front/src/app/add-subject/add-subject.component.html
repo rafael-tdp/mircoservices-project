@@ -1,1 +1,30 @@
-<p>add-subject works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Matière</title>
+</head>
+<body>
+    <h1>Création d'une nouvelle matière</h1>
+    <form action="/create-subject" method="POST">
+        <label for="nomMatiere">Nom de la Matière:</label>
+        <input type="text" id="nomMatiere" name="nomMatiere" required><br><br>
+
+        <label for="coefficient">Coefficient:</label>
+        <input type="number" id="coefficient" name="coefficient" min="0" required><br><br>
+
+        <label for="intervenantAssocié">Intervenant associé:</label>
+        <select id="intervenantAssocié" name="intervenantAssocié" required>
+            <option value="intervenantAssocié1">Intervenant 1</option>
+            <option value="intervenantAssocié2">Intervenant 2</option>
+            <option value="intervenantAssocié3">Intervenant 3</option>
+        </select><br><br>
+
+        <div class="center-button">
+        <input type="submit" value="Ajouter" (click)="addSubject()">
+        </div>
+
+    </form>
+</body>
+</html>
