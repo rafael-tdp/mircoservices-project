@@ -7,9 +7,9 @@
         <clr-dg-column>Moyenne</clr-dg-column>
 
         <clr-dg-row *ngFor="let item of userGrades">
-            <clr-dg-cell>{{ item.subject }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.subject.name }}</clr-dg-cell>
             <clr-dg-cell>M. DAVID</clr-dg-cell>
-            <clr-dg-cell>{{ item.coefficient }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.subject.coefficient }}</clr-dg-cell>
             <clr-dg-cell>{{ item.grades.join(', ') }}</clr-dg-cell>
             <clr-dg-cell>{{ getAverageGrade(item.grades) }} de moyenne</clr-dg-cell>
         </clr-dg-row>

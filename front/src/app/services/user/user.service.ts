@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class UserService {
 
   apiUrl = 'http://localhost:3000/auth'
+  apiUrlUsers = 'http://localhost:3000/users/'
+
   registerEndpoint: string = '/register';
   loginEndpoint: string = '/login';
 
@@ -99,6 +101,11 @@ export class UserService {
     localStorage.setItem('idUser', String(user._id));
     localStorage.setItem('token', user ? user.token : '');
     return this.currentUser;
+  }
+
+  getInfosTeacher(body: any): Observable<any> {
+    return this.httpClient.get<Object[]>(this.apiUrlUsers + 'addTeacherInfoToGrades', body);
+
   }
 
 }

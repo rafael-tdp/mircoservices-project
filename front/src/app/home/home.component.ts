@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
     this.gradeService.getUserGrades(this.userService.currentUser!._id).subscribe(res => {
       console.log(res);
       this.userGrades = res;
+      this.userService.getInfosTeacher(res).subscribe(res => {
+        console.log(res);
+        
+      })
     })
 
   }
