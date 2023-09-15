@@ -42,12 +42,12 @@ const gradeResolver = {
                 },
             ];
             const gradesBySubject = await Grade.aggregate(pipeline);
-
-            return 'yes';
+            return gradesBySubject;
         } catch (error) {
             throw new Error(`Une erreur est survenue lors de la récupération des notes de l'utilisateur : ${error}`);
         }
     },
+    addUserGrade: async args => {}
 
 }
 
