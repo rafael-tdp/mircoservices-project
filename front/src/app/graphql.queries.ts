@@ -1,21 +1,24 @@
 import { gql } from 'apollo-angular'
 
-const LOGIN = gql`
-  query {
-    todos {
-      id
-      name
-      description
-    }
-  }
-`
+// const LOGIN = gql`
+//   query {
+//     login {
+//       id
+//       name
+//       description
+//     }
+// //   }
+// `
 
-const ADD_TODO = gql`
-  mutation addTodo($name: String!, $description: String!) {
-    addTodo(name: $name, description: $description) {
-      id
-      name
-      description
+const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(user:{email: $email, password: $password}) {
+      user {
+        _id
+        firstname
+        lastname
+      }
+      token
     }
   }
 `
@@ -28,4 +31,4 @@ const DELETE_TODO = gql`
   }
   `
 
-export { GET_TODOS, ADD_TODO, DELETE_TODO }
+export { LOGIN }

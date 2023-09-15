@@ -12,33 +12,45 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+
+  error: any;
+
   // Formulaire de connexion
   formLogin: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   });
 
+
   constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+
+
+
   onLogin() {
-    const body = {
-      email: this.formLogin.controls['email'].value,
-      password: this.formLogin.controls['password'].value
-    }
-
-    this.userService.login(body).subscribe(res => {
-      console.log(res);
-      this.router.navigate(['/', 'home']).then(nav => {
-        console.log(nav); // true if navigation is successful
-      }, err => {
-        console.log(err) // when there's an error
-      });
-    }, (err) => {
-      console.log(err), 'ERROR';
-
-    })
+    // apollo graphql query to log in
+    this.userService.login(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value)
   }
+
+  // onLogin() {
+  //   const body = {
+  //     email: this.formLogin.controls['email'].value,
+  //     password: this.formLogin.controls['password'].value
+  //   }
+
+  //   this.userService.login(body).subscribe(res => {
+  //     console.log(res);
+  //     this.router.navigate(['/', 'home']).then(nav => {
+  //       console.log(nav); // true if navigation is successful
+  //     }, err => {
+  //       console.log(err) // when there's an error
+  //     });
+  //   }, (err) => {
+  //     console.log(err), 'ERROR';
+
+  //   })
+  // }
 }
