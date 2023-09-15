@@ -1,4 +1,5 @@
 import Grade from "../models/grade.js";
+import axios from 'axios';
 
 export const getUserGrades = async (req, res) => {
     try {
@@ -32,6 +33,17 @@ export const addUserGrade = async (req, res) => {
         });
 
         await newGrade.save();
+
+        const userG = await User.findById(userId);
+        const userEmail = userG.email;
+
+
+        const emailTo = {
+            to: userEmail, // Remplacez par l'e-mail de l'utilisateur concerné
+        };
+
+        await axios.post('http://localhost:3000/send-email', emailTo);
+
 
         res.json({
             message: "Note ajoutée avec succès",
@@ -83,6 +95,7 @@ export const updateUserGrade = async (req, res) => {
         res.json({
             message: "Note modifiée avec succès",
         });
+        
     } catch (error) {
         res.status(500).json({
             error: `Une erreur est survenue lors de la modification d'une note de l'utilisateur : ${error}`,

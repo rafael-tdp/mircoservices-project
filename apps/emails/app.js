@@ -26,14 +26,19 @@ const transporter = nodemailer.createTransport({
 
 // Route pour envoyer un e-mail
 app.post("/send-email", (req, res) => {
-  const { to, subject, text } = req.body;
+  
+  const { to } = req.body;
 
   // Envoi de l'e-mail
   transporter.sendMail({
     from: process.env.SMTP_EMAIL,
     to: to,
-    subject: subject,
-    text: text,
+    subject: "IMPORTANT: Notification de nouvelle note",
+    text: 
+    "Bonjour,\n\n" +
+    "Nous sommes heureux de vous informer qu'une nouvelle note a été publiée pour vous dans notre système. Cette note est maintenant disponible pour consultation.\n\n" +
+    "Cordialement,\n" +
+    "Devisio",
   }, (err, info) => {
 
     if (err) {
