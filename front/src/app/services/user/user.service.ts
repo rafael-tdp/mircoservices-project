@@ -108,4 +108,8 @@ export class UserService {
 
   }
 
+  getUsers(): Observable<any> {
+    return this.httpClient.get<Object[]>(this.apiUrlUsers + 'getUsers');
+  }
+
 }

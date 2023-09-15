@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-add-subject',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSubjectComponent implements OnInit {
 
-  constructor() { }
+  allUsers: any;
+
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUsers().subscribe(res => {
+      this.allUsers = res;
+      console.log(this.allUsers);
+      
+    })
   }
 
 }
