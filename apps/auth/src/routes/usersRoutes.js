@@ -2,7 +2,7 @@ import User from "../models/user.js";
 
 export const addTeacherInfoToGrades = async (req, res) => {
     try {
-        const grades = req.body.gradesArray;
+        const grades = req.body;
 
         const gradeIds = grades
             .map((grade) => grade.subject.teacher)

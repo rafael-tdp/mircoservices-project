@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import Grade from "../models/grade.js";
 import axios from 'axios';
 
@@ -5,13 +6,34 @@ export const getUserGrades = async (req, res) => {
     try {
         const userId = req.params.userId;
 
-        const gradesBySubject = await Grade.find({ user: userId })
-            .populate({
-                path: "subject",
-                model: "Subject",
-            })
-            .select("subject grade coefficient")
-            .lean();
+        const gradesBySubject = await Grade.aggregate([
+            {
+                $match: { user: new Types.ObjectId(userId) }, // Filtrez les notes pour un utilisateur spécifique
+            },
+            {
+                $group: {
+                    _id: "$subject", // Regroupez par le champ "subject"
+                    grades: { $push: "$grade" }, // Créez un tableau de notes
+                },
+            },
+            {
+                $lookup: {
+                    from: "subjects", // Le nom de la collection "subjects"
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "subjectData",
+                },
+            },
+            {
+                $unwind: "$subjectData", // Déroulez le tableau "subjectData" créé par la jointure
+            },
+            {
+                $project: {
+                    subject: "$subjectData", // Renommez "_id" en "subject"
+                    grades: 1, // Incluez le tableau de notes
+                },
+            },
+        ]);
 
         res.json(gradesBySubject);
     } catch (error) {
