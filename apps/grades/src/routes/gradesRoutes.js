@@ -1,5 +1,4 @@
 import Grade from "../models/grade.js";
-import { Types } from "mongoose";
 
 export const getUserGrades = async (req, res) => {
     try {

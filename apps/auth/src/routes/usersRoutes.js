@@ -3,21 +3,17 @@ import User from "../models/user.js";
 export const addTeacherInfoToGrades = async (req, res) => {
     try {
         const grades = req.body.gradesArray;
-        console.log(grades);
 
         const gradeIds = grades
             .map((grade) => grade.subject.teacher)
             .filter(Boolean);
-        console.log(gradeIds);
 
         const uniqueTeacherIds = [...new Set(gradeIds)];
-        console.log(uniqueTeacherIds);
 
         const teachers = await User.find(
             { _id: { $in: uniqueTeacherIds } },
             { password: 0 }
         );
-        console.log(teachers);
 
         const teacherMap = {};
         teachers.forEach((teacher) => {
