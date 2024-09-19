@@ -7,6 +7,7 @@ Le projet consiste à développer un site web destiné à deux types d'utilisate
 Découpage du projet:
 https://excalidraw.com/#room=94a083eb85eccc12288d,s_JNb7sq83JVLAnsgQbElQ
 
+
 Exemple de microservices:
 https://github.com/GraphQLHero/microservices-workshop/tree/main
 
@@ -17,3 +18,8 @@ https://slides-esgi-microservices.graphqlhero.com/
 Front-end : Angular
 Back-end : NodeJS
 BDD : MongoDB
+
+# Event-Driven :
+produceur :  service notes
+consommateur : service notifcation et autres
+message : "Envoi de notif pour prévénir qu'une note a été publiée"

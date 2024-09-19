@@ -1,0 +1,19 @@
+<div class="flex justify-center mt-[150px]">
+    <clr-datagrid class="w-3/6">
+        <clr-dg-column>Matière</clr-dg-column>
+        <clr-dg-column>Intervenant</clr-dg-column>
+        <clr-dg-column>Coef.</clr-dg-column>
+        <clr-dg-column>Notes</clr-dg-column>
+        <clr-dg-column>Moyenne</clr-dg-column>
+
+        <clr-dg-row *ngFor="let item of userGrades">
+            <clr-dg-cell>{{ item.subject.name }}</clr-dg-cell>
+            <clr-dg-cell>M. DAVID</clr-dg-cell>
+            <clr-dg-cell>{{ item.subject.coefficient }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.grades.join(', ') }}</clr-dg-cell>
+            <clr-dg-cell>{{ getAverageGrade(item.grades) }} de moyenne</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer></clr-dg-footer>
+    </clr-datagrid>
+</div>
